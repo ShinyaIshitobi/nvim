@@ -6,7 +6,6 @@ return {
   lazy = false,
   keys = {
     { "<leader>ee", "<cmd>NvimTreeToggle<cr>", desc = "Toggle NvimTree" },
-    { "<leader>e", "<cmd>NvimTreeFocus<cr>", desc = "Focus NvimTree" },
   },
   config = function()
     require("nvim-tree").setup({})
