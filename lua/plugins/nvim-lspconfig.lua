@@ -21,6 +21,12 @@ return {
 
     vim.lsp.config("pyright", {
       capabilities = capabilities,
+      before_init = function(_, config)
+        local venv_path = vim.fn.getcwd() .. "/.venv/bin/python"
+        if vim.fn.filereadable(venv_path) == 1 then
+          config.settings.python.pythonPath = venv_path
+        end
+      end,
       settings = {
         python = {
           analysis = {
@@ -40,6 +46,7 @@ return {
         vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
         vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
         vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+        vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, opts)
       end,
     })
 
