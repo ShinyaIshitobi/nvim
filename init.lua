@@ -4,5 +4,6 @@ vim.keymap.set("i", "jj", "<Esc>")
 vim.opt.clipboard = "unnamedplus"
 vim.opt.number = true
 vim.opt.termguicolors = false
+vim.opt.fillchars = { eob = " " }
 
 require("config.lazy")
