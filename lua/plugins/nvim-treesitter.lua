@@ -2,16 +2,17 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
-    event = { "BufReadPre", "BufNewFile" },
+    lazy = false,
     config = function()
-      require("nvim-treesitter").setup()
+      local ts = require("nvim-treesitter")
 
-      local ensure_installed = {
+      ts.install({
         "go",
         "gomod",
         "gosum",
         "python",
         "lua",
+        "luadoc",
         "dockerfile",
         "toml",
         "yaml",
@@ -19,20 +20,14 @@ return {
         "bash",
         "markdown",
         "markdown_inline",
-      }
-
-      local installed = require("nvim-treesitter.config").get_installed()
-      local to_install = vim.tbl_filter(function(lang)
-        return not vim.list_contains(installed, lang)
-      end, ensure_installed)
-
-      if #to_install > 0 then
-        require("nvim-treesitter").install(to_install)
-      end
+      })
 
       vim.api.nvim_create_autocmd("FileType", {
-        callback = function()
-          pcall(vim.treesitter.start)
+        callback = function(args)
+          local lang = vim.treesitter.language.get_lang(args.match)
+          if lang and vim.treesitter.language.add(lang) then
+            vim.treesitter.start(args.buf)
+          end
         end,
       })
     end,
