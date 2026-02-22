@@ -8,12 +8,8 @@ return {
       capabilities = capabilities,
       settings = {
         Lua = {
-	  diagnostics = {
+          diagnostics = {
             globals = { "vim" },
-          },
-          workspace = {
-            checkThirdParty = false,
-            library = vim.api.nvim_get_runtime_file("", true),
           },
         },
       },
@@ -46,7 +42,7 @@ return {
         vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
         vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
         vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-        vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, opts)
+
       end,
     })
 
