@@ -8,7 +8,11 @@ return {
     { "<leader>ee", "<cmd>NvimTreeToggle<cr>", desc = "Toggle NvimTree" },
   },
   config = function()
-    require("nvim-tree").setup({})
+    require("nvim-tree").setup({
+      update_focused_file = {
+        enable = true,
+      },
+    })
 
     vim.api.nvim_create_autocmd("TabNewEntered", {
       callback = function()
