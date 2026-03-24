@@ -12,6 +12,9 @@ return {
       update_focused_file = {
         enable = true,
       },
+      filters = {
+        custom = { "^\\.DS_Store$", "^\\.git$" },
+      },
     })
 
     vim.api.nvim_create_autocmd("TabNewEntered", {
