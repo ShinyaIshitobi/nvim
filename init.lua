@@ -12,19 +12,8 @@ vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.scrolloff = 999
 
--- Clipboard
+-- Clipboard (let nvim auto-detect: uses pbcopy/pbpaste on macOS, works inside tmux)
 vim.opt.clipboard = "unnamedplus"
-vim.g.clipboard = {
-  name = "OSC 52",
-  copy = {
-    ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
-    ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
-  },
-  paste = {
-    ["+"] = require("vim.ui.clipboard.osc52").paste("+"),
-    ["*"] = require("vim.ui.clipboard.osc52").paste("*"),
-  },
-}
 
 -- Keymaps
 vim.keymap.set("i", "jj", "<Esc>")
